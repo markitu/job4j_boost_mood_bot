@@ -2,8 +2,11 @@ package ru.job4j.service;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
+import org.springframework.beans.factory.BeanNameAware;
+import org.springframework.stereotype.Component;
 
-public class ReminderService {
+@Component
+public class ReminderService implements BeanNameAware {
 
     @PostConstruct
     public void init() {
@@ -13,6 +16,11 @@ public class ReminderService {
     @PreDestroy
     public void destroy() {
         System.out.println("ReminderService shutting down");
+    }
+
+    @Override
+    public void setBeanName(String name) {
+        System.out.println("ReminderService bean name: " + name);
     }
 
 }
